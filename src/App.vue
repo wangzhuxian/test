@@ -1,11 +1,19 @@
 <template>
   <div id="app">
-   <keep-alive>
-      <router-view/>
-   </keep-alive>
+    <music-header></music-header>
+    <keep-alive>
+      <router-view />
+    </keep-alive>
   </div>
 </template>
-
+<script>
+import MusicHeader from "@/components/Header";
+export default {
+    components: {
+    "music-header" : MusicHeader,
+  }
+};
+</script>
 <style lang="scss">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

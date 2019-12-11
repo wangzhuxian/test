@@ -1,6 +1,6 @@
 export const route = [
   {
-    path: '/testDemo',
+    path: '/plist',
     component: () => import('./view')
   }
 ];

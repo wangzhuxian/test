@@ -1,6 +1,6 @@
 export const route = [
   {
-    path: '/test',
+    path: '/singer',
     component: () => import("./view"),
   }
 ];

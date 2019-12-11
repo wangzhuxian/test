@@ -10,7 +10,7 @@ context.keys().forEach(url => {
 
 routes.push({
   path: "*",
-  redirect: "/login",
+  redirect: "/",
 });
 
 Vue.use(Router);

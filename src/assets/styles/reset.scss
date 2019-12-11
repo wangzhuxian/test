@@ -1,0 +1,30 @@
+/* override */
+.mint-cell {
+  padding-left: 10px;
+  min-height: 52px
+}
+
+.mint-cell-wrapper {
+  background-image: none;
+  border-bottom: 1px solid #e8e8e8;
+  font-size: 14px;
+}
+
+.mint-cell-title {
+  padding-right: 10px;
+}
+.mint-tab-item {
+  padding: 12px 0 !important;
+}
+
+.mint-tab-item-label {
+  font-size: 16px !important;
+}
+
+.mint-navbar .mint-tab-item.is-selected{
+  margin-bottom: 0;
+}
+
+
+
+
