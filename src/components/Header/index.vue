@@ -26,6 +26,7 @@
   </div>
 </template>
 <script>
+import { mapState, mapMutations } from 'vuex';
 export default {
   data() {
     return {
@@ -38,15 +39,20 @@ export default {
       currentIndex: 0 // 默认下标值为0
     };
   },
+
   computed: {},
+
   watch: {},
+
   methods: {
+    ...mapMutations('global',['handleDetailPlayerFlag']),
     handleRoute(item) {
       this.currentIndex = item.index;
       this.$router.push(item.path);
     },
     searchRouter() {
-      console.log("aaaaaaaa")
+      this.handleDetailPlayerFlag({flag: false});
+      this.$router.push({ path: '/search' })
     }
   }
 };

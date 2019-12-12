@@ -1,16 +1,18 @@
 <template>
   <div id="app">
     <music-header></music-header>
-    <keep-alive>
-      <router-view />
-    </keep-alive>
+    <div style="margin-top: 100px;">
+      <keep-alive>
+        <router-view />
+      </keep-alive>
+    </div>
   </div>
 </template>
 <script>
-import MusicHeader from "@/components/Header";
+import MusicHeader from '@/components/Header';
 export default {
-    components: {
-    "music-header" : MusicHeader,
+  components: {
+    'music-header': MusicHeader
   }
 };
 </script>

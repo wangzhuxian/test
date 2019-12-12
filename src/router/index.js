@@ -7,7 +7,7 @@ context.keys().forEach(url => {
   const { route } = context(url);
   routes = routes.concat(route);
 });
-
+console.log(routes);
 routes.push({
   path: "*",
   redirect: "/newSongs",
