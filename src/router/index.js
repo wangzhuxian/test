@@ -10,7 +10,7 @@ context.keys().forEach(url => {
 
 routes.push({
   path: "*",
-  redirect: "/",
+  redirect: "/newSongs",
 });
 
 Vue.use(Router);

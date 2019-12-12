@@ -13,12 +13,15 @@
     </div>
     <!-- 这个是导航栏 -->
     <div class="header-nav">
-      <mt-navbar v-model="routeName" class="container">
-        <mt-tab-item id="newSongs">新歌</mt-tab-item>
-        <mt-tab-item id="rank">排行</mt-tab-item>
-        <mt-tab-item id="plist">歌单</mt-tab-item>
-        <mt-tab-item id="singer">歌手</mt-tab-item>
-      </mt-navbar>
+      <div
+        v-for="(item) in tabNav"
+        :key="item.index"
+        @click="handleRoute(item)"
+        class="header-nav-item"
+        :class="{'is_active':  currentIndex === item.index}"
+      >
+        {{ item.name }}
+      </div>
     </div>
   </div>
 </template>
@@ -26,20 +29,24 @@
 export default {
   data() {
     return {
-      routeName: ['newSongs', 'rank', 'plist', 'singer'].includes(this.$route.name)
-        ? this.$router.name
-        : 'newSongs'
+      tabNav: [
+        { name: '新歌', path: '/newSongs',index: 0 },
+        { name: '排行', path: '/rank' , index: 1},
+        { name: '歌单', path: '/plist' , index: 2,},
+        { name: '歌手', path: '/singer', index: 3 }
+      ],
+      currentIndex: 0 // 默认下标值为0
     };
   },
-  mounted() {
-    console.log(this.routeName)
-  },
-  computed() {
-    
-  },
+  computed: {},
+  watch: {},
   methods: {
+    handleRoute(item) {
+      this.currentIndex = item.index;
+      this.$router.push(item.path);
+    },
     searchRouter() {
-      console.log('aaaa');
+      console.log("aaaaaaaa")
     }
   }
 };

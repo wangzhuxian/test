@@ -1,6 +1,7 @@
 export const route = [
   {
-    path: '/',
+    path: '/newSongs',
+    name: 'newSongs',
     component: () => import('./view')
   }
 ];
