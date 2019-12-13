@@ -15,6 +15,7 @@
         v-for="(song, index) in container.songList"
         :title="song.filename"
         :key="index"
+        @click.native="playAudio(index)"
       >
         <img src="@/assets/images/download_icon.png" width="20" height="20" />
       </mt-cell>
@@ -27,7 +28,10 @@
 import { getNewSongData } from '@/api';
 import { Indicator } from 'mint-ui';
 import downLoadImg from "@/assets/images/download_icon.png";
+import {mapState, mapActions, mapMutations} from "vuex";
+import {PLAY_AUDIO} from "@/mixins";
 export default {
+   mixins: [PLAY_AUDIO],
   data() {
     return {
       container: {
@@ -46,11 +50,12 @@ export default {
       this.container.isShowData = true;
       this.container.banners = res.banner;
       this.container.songList = res.data;
-      console.log(this.container.banners, this.container.songList);
       Indicator.close();
     });
   },
-  methods: {}
+  methods: {
+
+  }
 };
 </script>
 
