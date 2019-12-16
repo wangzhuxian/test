@@ -12,7 +12,7 @@ let PLAY_AUDIO = {
         hash: songInfo.hash,
         timelength: songInfo.duration * 1000
       });
-      this.$store.commit('global/isNowPlay', {flag: true})
+      this.$store.commit('global/isNowPlay', {flag: true});
     }
   }
 };

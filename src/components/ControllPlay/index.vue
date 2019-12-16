@@ -4,7 +4,8 @@
       :src="audio.songUrl"
       autoplay
       id="audioPlay"
-      @timeupdate="change()"
+      ref="audio"
+      @timeupdate="playChange()"
       @ended="next()"
       @error="next()"
     ></audio>
@@ -38,7 +39,7 @@
   </div>
 </template>
 <script>
-import { MapGetters, MapActions, MapMutations } from 'vuex';
+import { mapActions, mapMutations, mapGetters } from 'vuex';
 export default {
   name: 'control-player',
   data() {
@@ -47,29 +48,44 @@ export default {
     };
   },
   computed: {
-      ...MapGetters('global', ['audio', 'audioLoading', 'showPlayer', 'isPlay']),
+    ...mapGetters('global', ['audio', 'audioLoading', 'showPlayer', 'isPlay'])
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.$refs.audio.src = this.audio.songUrl;
+    });
   },
   methods: {
-      ...MapMutations('global',['isNowPlay']),
-      ...MapActions('global', ['prevNext']),
-      togglePanel() {
-          this.toggleHide = !this.toggleHide;
-      },
-      // 歌曲详情结果
-      showDetailPlayer(){
+    ...mapMutations('global', ['isNowPlay']),
+    ...mapActions('global', ['prevNext']),
+    togglePanel() {
+      this.toggleHide = !this.toggleHide;
+    },
+    // 歌曲详情结果
+    showDetailPlayer() {},
 
-      },
-      // 点击播放按钮
-      toggleStatus(){
-          let isNowPlay = this.play;
-          const audioElement = document.querySelector('#audio');
-          isNowPlay === true ? audioElement.pause() : audioElement.play();
-          this.isNowPlay({flag: !isNowPlay});
-      },
-      // 点击下一曲播放
-      next(){
-          this.prevNext('next');
+    playChange() {
+      const time =  this.$refs.audio.currentTime;
+      if (this.audio.currentFlag) {
+        document.getElementById(
+          'audioPlay'
+        ).currentTime = this.audio.currentLength;
+        this.$store.commit('global/setCurrent', false);
+      } else {
+        this.$store.commit('global/setAudioTime', time);
       }
+    },
+    // 点击播放按钮
+    toggleStatus() {
+      let isNowPlay = this.isPlay;
+      const audioElement =  this.$refs.audio;
+      isNowPlay === true ? audioElement.pause() : audioElement.play();
+      this.isNowPlay({ flag: !isNowPlay });
+    },
+    // 点击下一曲播放
+    next() {
+      this.prevNext('next');
+    }
   }
 };
 </script>

@@ -42,7 +42,7 @@ export default {
         state.showPlayer = true;
       }
       state.listenCount++;
-      state.audio = { ...state.audio, audio };
+      state.audio = { ...audio };
     },
     // 点击切换的加载操作
     toggleAudioLoading(state, flag) {
@@ -63,21 +63,22 @@ export default {
     },
 
     setListInfo(state, payload) {
-      console.log('setListsInfo', payload);
       state.listInfo.songList = payload.songList;
       state.listInfo.songIndex = payload.songIndex;
     },
     isNowPlay: (state, payload) => {
       state.isPlay = payload.flag;
-    }
+    },
+    setAudioTime (state, time) {
+      state.audio.currentLength = time
+    },
   },
   actions: {
     // 获取播放音乐的数据
-    getSongs({ commit }, hash) {
+    getSongs({ commit , state}, hash) {
       if (hash) {
         commit('toggleAudioLoading', true); // 执行动作加载
         getClickSongs(hash).then(res => {
-          console.log(res);
           const songUrl = res.url;
           const imgUrl = res.imgUrl.replace('{size}', 400);
           const title = res.songName;
@@ -116,7 +117,7 @@ export default {
         index === songList.length - 1 ? 0 : ++index;
       }
       const hash = songList[index] && songList[index].hash;
-      dispatch('getSong', hash);
+      dispatch('getSongs', hash);
     }
   }
 };

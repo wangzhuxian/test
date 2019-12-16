@@ -5,13 +5,13 @@
 }
 
 .mint-cell-wrapper {
-  background-image: none;
-  border-bottom: 1px solid #e8e8e8;
+  background-image: none !important;
+  // border-bottom: 1px solid #e8e8e8;
   font-size: 14px;
 }
 
 .mint-cell-title {
-  padding-right: 10px;
+padding-right: 10px !important;
 }
 .mint-tab-item {
   padding: 12px 0 !important;
@@ -28,8 +28,12 @@
   height: 150px !important;
 }
 .mint-cell-wrapper {
-  font-size: 12px !important;
+  font-size: 16px !important;
 }
 .mint-cell-title {
   text-align: left !important;
+  font-size: 16px !important;
+}
+.mint-cell:last-child {
+  background-image: none !important;  
 }

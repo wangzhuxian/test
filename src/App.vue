@@ -6,13 +6,16 @@
         <router-view />
       </keep-alive>
     </div>
+    <controll-play></controll-play>
   </div>
 </template>
 <script>
 import MusicHeader from '@/components/Header';
+import ControllPlay from '@/components/ControllPlay';
 export default {
   components: {
-    'music-header': MusicHeader
+    'music-header': MusicHeader,
+    'controll-play': ControllPlay
   }
 };
 </script>
